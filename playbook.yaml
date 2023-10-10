@@ -1,0 +1,30 @@
+- name: play numner 1
+  hosts: servera,serverb
+  vars_files:
+    - web-setup-vars.yaml
+  become: true
+  tasks:
+    - name: install web pkg
+      ansible.builtin.dnf:
+        name: "{{ web_pkg_name }}" 
+        state: latest
+    - ansible.builtin.copy:
+        src: files/index.html
+        dest: /var/www/html
+      register: copy_out_var
+    - name: display the content of var
+      ansible.builtin.debug:
+        var: copy_out_var
+    - name: starting web server
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: enable http on firewall
+      ansible.posix.firewalld:
+        service: http
+        immediate: true
+        permanent: true
+        state: enabled
+#    - name: verify the container env being created
+#      ansible.builtin.shell: sleep 700

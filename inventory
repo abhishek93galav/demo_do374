@@ -1,0 +1,16 @@
+servera
+serverb
+serverc
+
+[useast]
+serverd
+
+[uswest]
+servere
+
+[us:children]
+useast
+uswest
+
+[us]
+serverf
