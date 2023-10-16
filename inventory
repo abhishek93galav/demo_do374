@@ -8,9 +8,5 @@ serverd
 [uswest]
 servere
 
-[us:children]
-useast
-uswest
-
-[us]
+[uscentral]
 serverf
