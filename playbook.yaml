@@ -1,5 +1,5 @@
 - name: a demo play
-  hosts: servera,serverb
+  hosts: servera
   vars_files:
     - web-setup-vars.yaml
   become: true
@@ -11,10 +11,10 @@
     - name: push web content
       ansible.builtin.copy:
         src: files/index.html
-        dest: /var/www/html
+        dest: "{{ web_doc_root }}" 
     - name: starting web server
       ansible.builtin.service:
-        name: httpd
+        name: "{{ web_svc_name }}"
         state: started
         enabled: true
     - name: enable web service on firewall
