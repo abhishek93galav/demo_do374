@@ -1,5 +1,5 @@
 - name: a demo play
-  hosts: servera
+  hosts: all
   vars_files:
     - web-setup-vars.yaml
   become: true
