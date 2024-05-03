@@ -1,0 +1,31 @@
+- name: a demo play
+  hosts: servera, serverb, serverc
+  vars_files:
+    - web-setup-vars.yaml
+  become: true
+  roles:
+    - name: do374.democol.ntpsetup
+  tasks:
+    - name: install web pkg
+      ansible.builtin.dnf:
+        name: "{{ web_pkg_name }}" 
+        state: latest
+    - name: push web content
+      ansible.builtin.copy:
+        src: files/index.html
+        dest: "{{ web_doc_root }}" 
+    - name: starting web server
+      ansible.builtin.service:
+        name: "{{ web_svc_name }}"
+        state: started
+        enabled: true
+    - name: enable web service on firewall
+      ansible.posix.firewalld:
+        service: http
+        immediate: true
+        permanent: true
+        state: enabled
+    - ansible.builtin.uri:
+        url: "http://{{ ansible_facts['fqdn'] }}"
+        status_code: 200
+      delegate_to: localhost
