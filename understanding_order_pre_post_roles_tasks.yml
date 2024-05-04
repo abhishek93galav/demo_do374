@@ -1,0 +1,45 @@
+---
+- hosts: servera
+  
+  pre_tasks:
+    - name: representing a task that runs before roles,main tasks
+      ansible.builtin.shell: id
+      notify:
+        - pre_task_handler
+  
+#  roles:
+#    - name: ntpsetup
+  
+  tasks:
+    - name: task 1 from task section
+      ansible.builtin.shell: id
+      notify:
+        - task_1_handler
+    - ansible.builtin.include_role:
+        name: ntpsetup
+    - name: task 2 from task section
+      ansible.builtin.shell: id      
+      notify:                        
+        - task_2_handler
+  
+  post_tasks:
+    - name: representing a task that runs after pre,roles,main tasks
+      ansible.builtin.shell: id     
+      notify:
+        - post_task_handler
+  
+  handlers:
+    - name: pre_task_handler
+      ansible.builtin.debug:
+        msg: the pre task handlers running
+    - name: task_1_handler
+      ansible.builtin.debug:
+        msg: task 1 handlers running
+    - name: task_2_handler
+      ansible.builtin.debug:
+        msg: task 2 handlers running
+    - name: post_task_handler
+      ansible.builtin.debug:
+        msg: the post task handlers running
+
+

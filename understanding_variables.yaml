@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    location: vars_derective_in_play
+  vars_files:
+    - using_a_sperate_var_file.yaml
+  tasks:
+    - name: using a variable
+      ansible.builtin.debug:
+        msg: "{{ location }}"
+      vars:
+        location: vars_directive_on_task_level
+      when: inventory_hostname == "serverf"
+

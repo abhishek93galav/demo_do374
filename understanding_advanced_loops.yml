@@ -1,0 +1,26 @@
+---
+- hosts: servera
+  gather_facts: false
+  vars:
+    trainers:
+      - firstname: abhi
+        lastname: galav
+      - firstname: ricardo
+        lastname: alonso
+    capitals:
+      germany: berlin
+      canada: ottawa
+      france: paris
+    training: do374
+    fruits:
+      - orange
+      - apple
+      - banana
+    roots:
+      - carrot
+      - raddish
+      - ginger
+  tasks:
+    - ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.file', item) }}"
+      loop: "{{ query('ansible.builtin.fileglob', 'ssh_server*.pub') }}"

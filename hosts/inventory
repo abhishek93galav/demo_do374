@@ -1,0 +1,20 @@
+servera  location="inventory file _ servera"
+serverb
+serverc
+
+[useast]
+serverd location="inventory_file_serverd_host"
+
+[uswest]
+servere location="inventory_file_servere"
+
+[uscentral]
+serverf 
+
+[us:children]
+useast
+uswest
+uscentral
+
+[us:vars]
+location="inventory_file_us_group"

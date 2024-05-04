@@ -1,0 +1,5 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - ansible.builtin.debug:
+        msg: "the IP address of {{ ansible_facts['fqdn'] }} is {{ ansible_facts['default_ipv4']['address'] }}"

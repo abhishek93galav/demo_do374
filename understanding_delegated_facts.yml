@@ -1,0 +1,9 @@
+---
+- hosts: servera
+  tasks:
+    - ansible.builtin.set_fact:
+        trainer: "abhi {{ ansible_facts['fqdn'] }}"
+      delegate_to: serverb
+      delegate_facts: true
+    - ansible.builtin.debug:
+        var: hostvars['serverb']

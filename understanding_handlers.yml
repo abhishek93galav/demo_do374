@@ -1,0 +1,17 @@
+- hosts: serverc
+  become: true
+  tasks:
+    - ansible.builtin.lineinfile:
+        line: server 172.25.254.254 iburst
+        path: /etc/chrony.conf
+      notify:
+        - restart chronyd
+    - ansible.builtin.meta: flush_handlers
+    - ansible.builtin.debug:
+        msg: this tasks depends on the changed service
+      failed_when: true
+  handlers:
+    - name: restart chronyd 
+      ansible.builtin.service:
+        name: chronyd
+        state: restarted

@@ -1,0 +1,16 @@
+---
+- hosts: servera
+  vars:
+    concerned_env: foo
+    ssh_keys:
+      - ssh_servera.pub
+      - ssh_serverb.pub
+  tasks:
+    - ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.env', concerned_env) }}"
+    - ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.file', item) }}"
+      loop: "{{ ssh_keys }}"
+#        msg: ssh_servera.pub
+    - ansible.builtin.debug:
+        msg: "{{ query('ansible.builtin.lines', 'ls /tmp') | length }}"

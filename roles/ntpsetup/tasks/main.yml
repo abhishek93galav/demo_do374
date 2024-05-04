@@ -1,0 +1,8 @@
+---
+# tasks file for ntpsetup
+- name: configure ntp service
+  ansible.builtin.lineinfile:
+    line: "server {{ ntp_server }} iburst"
+    path: /etc/chrony.conf
+  notify:
+    - restart ntp service

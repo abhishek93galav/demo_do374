@@ -1,0 +1,5 @@
+collections:
+  - name: ansible.posix
+  - name: redhat.satellite
+  - name: theforeman.foreman
+  - name: /home/student/Downloads/redhat_cop-aap_utilities-2.2.4.tar.gz 

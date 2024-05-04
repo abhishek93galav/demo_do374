@@ -1,0 +1,15 @@
+- hosts: serverb
+  become: true
+  roles:
+    - name: ntpsetup
+  tasks:
+    - ansible.builtin.debug:
+        msg: cusomt message by task from tasks section
+    - name: tasks that will call a handler
+      ansible.builtin.shell: id
+      notify:
+        - task_handler
+  handlers:
+    - name: task_handler
+      ansible.builtin.debug:   
+        msg: handler triggered by task from task section running

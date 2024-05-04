@@ -1,0 +1,19 @@
+---
+ansible-navigator:
+  execution-environment:
+    container-engine: podman
+    enabled: true
+    image: registry.redhat.io/ansible-automation-platform-22/ee-minimal-rhel8
+    environment-variables:
+      set:
+        foo: bar
+    pull:
+      policy: missing
+  logging:
+    append: true
+    file: /home/student/demo_do374/ansible-navigator.log
+    level: warning
+  mode: stdout
+  playbook-artifact:
+    enable: false
+

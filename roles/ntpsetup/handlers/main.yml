@@ -1,0 +1,6 @@
+---
+# handlers file for ntpsetup
+- name: restart ntp service
+  ansible.builtin.service:
+    name: chronyd
+    state: restarted

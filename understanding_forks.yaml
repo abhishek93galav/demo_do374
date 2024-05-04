@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: false
+  max_fail_percentage: 50%
+  become: true
+  serial: 
+    - 1
+    - 50%
+    - 100%
+  tasks:
+    - name: task number 1
+      ansible.builtin.command: systemctl restart autofs
+    - name: task number 2
+      ansible.builtin.command: sleep 2

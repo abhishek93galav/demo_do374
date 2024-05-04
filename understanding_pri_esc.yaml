@@ -1,0 +1,6 @@
+- hosts: servera
+  become: true
+  tasks:
+    - ansible.builtin.command: 'id'
+    - ansible.builtin.command: 'id'
+      become: false

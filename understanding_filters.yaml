@@ -1,0 +1,17 @@
+- hosts: servera
+  vars_files:
+    - usermanagement_vars.yml
+  vars:
+    pkgs:
+      - httpd
+      - autofs
+      - nfs-server
+    usershell: /bin/bash
+  become: true
+  gather_facts: false
+  tasks:
+    - ansible.builtin.user:
+        name: "{{ username | lower }}"
+        password: "{{ password | password_hash('sha512') }}"
+        shell: "{{ usershell | default('/bin/ksh') }}"
+        comment: "{{ firstname | capitalize }} {{ lastname | capitalize }}"
