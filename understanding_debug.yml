@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+    - name: trying debug module
+      ansible.builtin.debug:
+        msg: cusomt message on the behalf of the host

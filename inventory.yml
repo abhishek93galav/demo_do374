@@ -1,0 +1,18 @@
+all:
+  children:
+    eu:
+      children:
+        eucentral:
+          hosts:
+            serverb: {}
+            servere: {}
+        euwest:
+          hosts:
+            serverc: {}
+            serverd: {}
+    ungrouped:
+      hosts:
+        servera: {}
+    webservers:
+      hosts:
+        serverf: {}

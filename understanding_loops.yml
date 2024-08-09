@@ -1,0 +1,35 @@
+- name: demo of running same task over and over again using loop
+  hosts: serverf
+  become: true
+  gather_facts: false
+  vars:
+    svcs:
+      - httpd
+      - autofs
+    basket1:
+      - kiwi
+      - banana
+    basket2:
+      - orange
+      - mango
+  tasks:
+    - name: isntall pkgs without loop because module supports it
+      ansible.builtin.dnf:
+        name:
+          - httpd
+          - mod_ssl
+          - autofs
+          - ksh
+        state: latest
+    - name: start the services using loop
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ svcs }}"
+    - name: use combination of multiple lists
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+# using with_items instead of loop as it can automatically combine multiple lists into one and flatten it
+      with_items:
+        - "{{ basket1 }}"
+        - "{{ basket2 }}"

@@ -1,0 +1,7 @@
+collections:
+  - name: ansible.posix
+  - name: theforeman.foreman
+  - name: cisco.asa
+    version: 4.0.1
+  - name: /home/student/Downloads/community-cip-1.0.1.tar.gz
+

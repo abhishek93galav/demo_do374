@@ -1,0 +1,12 @@
+---
+# tasks file for websetup
+- name: isntall web server
+  ansible.builtin.dnf:
+    name: "{{ web_pkg }}"
+    state: present
+  notify:
+    - start web service
+- name: push web content
+  ansible.builtin.copy:
+    src: index.html
+    dest: "{{ web_doc_root }}/index.html"

@@ -1,0 +1,9 @@
+- hosts: servera,eucentral
+  vars:
+    location: dec_in_playbook_play_vars 
+#  vars_files:
+#    - variable_testing_file.yml
+  tasks:
+    - name: trying to print location variable
+      ansible.builtin.debug:
+        msg: "{{ location }}"

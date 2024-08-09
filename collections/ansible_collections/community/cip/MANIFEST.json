@@ -1,0 +1,32 @@
+{
+ "collection_info": {
+  "namespace": "community",
+  "name": "cip",
+  "version": "1.0.1",
+  "authors": [
+   "Adam Miller <admiller@redhat.com>",
+   "Josh Swanson <jswanson@redhat.com>",
+   "Matthew Sandoval <msandoval@redhat.com>",
+   "Christopher Santiago <csantiago@redhat.com>",
+   "Aaron Neustedter <AJNeuste@ra.rockwell.com>"
+  ],
+  "readme": "README.md",
+  "tags": [],
+  "description": "Collection to automate Programmable Logic Controllers",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {},
+  "repository": "https://github.com/ansible-collections/community.cip",
+  "documentation": "https://github.com/ansible-collections/community.cip/README.md",
+  "homepage": "https://github.com/ansible-collections/community.cip",
+  "issues": "https://github.com/ansible-collections/community.cip/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "06607df5a7e1389d33ded53e4caa74f92c8f7587be5a08edc497479d079c8f24",
+  "format": 1
+ },
+ "format": 1
+}

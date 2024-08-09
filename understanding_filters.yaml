@@ -1,17 +1,33 @@
-- hosts: servera
+- name: finding ways to use filters
+  hosts: servera
   vars_files:
-    - usermanagement_vars.yml
+    - variables_provided_by_other_team.yml
   vars:
     pkgs:
       - httpd
       - autofs
       - nfs-server
-    usershell: /bin/bash
-  become: true
+    fruits:
+      - kiwi
+      - 
+    sat_shell: ''
   gather_facts: false
   tasks:
-    - ansible.builtin.user:
-        name: "{{ username | lower }}"
-        password: "{{ password | password_hash('sha512') }}"
-        shell: "{{ usershell | default('/bin/ksh') }}"
-        comment: "{{ firstname | capitalize }} {{ lastname | capitalize }}"
+    - name: making sure the value is in lower case letters
+      ansible.builtin.debug:
+        msg: "{{ sat_user | lower }}"
+
+    - name: runnnig a task based on the length of a list
+      ansbile.builtin.debug:
+        msg: list items were more then 2
+      when: pkgs | length > 2
+
+    - name: setting a default value if the var isnt declared and if declared but with null value then keeping it
+      ansible.builtin.debug:
+        msg: "{{ sat_shell | default('/sbin/nologin', false) }}"
+
+    - name: generating password hash of a plain text
+      ansible.builtin.debug:
+        msg: "{{ sat_password | password_hash('sha512', 'secretsalt')}}"
+
+    

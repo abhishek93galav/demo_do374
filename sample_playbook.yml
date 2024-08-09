@@ -1,0 +1,28 @@
+- name: a play for demonstration
+  hosts: serverd
+  gather_facts: false
+  vars:
+    sat_user: bob
+    web_pkg: httpd
+    web_svc: httpd
+    web_doc_root: /var/www/html
+  become: true
+  tasks:
+          - name: make sure bob account exists
+            ansible.builtin.user:
+              name: "{{ sat_user }}"
+              state: present
+          - name: make sure web pkg is isntalled
+            ansible.builtin.dnf:
+                    name: "{{ web_pkg }}"
+                    state: latest
+          - name: start the webs erver
+            ansible.builtin.service:
+                    name: "{{ web_svc }}"
+                    state: started
+                    enabled: true
+          - name: push web content
+            ansible.builtin.copy:
+                    src: index.html
+                    dest: "{{ web_doc_root }}/index.html"
+                    mode: 0644

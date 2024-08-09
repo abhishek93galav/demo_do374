@@ -1,0 +1,20 @@
+- hosts: servera
+  vars:
+    trainers:
+      firstname: Abhishek
+      lastname: Galav
+      title: training consultant
+    courses:
+      - RH294
+      - DO374
+      - DO467
+      - DO417
+      - DO457
+
+  tasks:
+    - name: using specific item from a list
+      ansible.builtin.debug:
+        msg: "{{ courses[1] }}"
+    - name: using specific key of a dictionary
+      ansible.builtin.debug:
+        msg: "{{ trainers['firstname'] }}"

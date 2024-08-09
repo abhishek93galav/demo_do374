@@ -1,17 +1,33 @@
-- hosts: serverc
+- hosts: servera,serverb,serverc,serverd
   become: true
+  gather_facts: false
+#  force_handlers: true
   tasks:
-    - ansible.builtin.lineinfile:
+    - name: make sure clasroom is set as ntp server
+      ansible.builtin.lineinfile:
         line: server 172.25.254.254 iburst
         path: /etc/chrony.conf
+        state: absent
       notify:
         - restart chronyd
-    - ansible.builtin.meta: flush_handlers
-    - ansible.builtin.debug:
-        msg: this tasks depends on the changed service
-      failed_when: true
+    - name: task number 2
+      debug:
+        msg: "{{ problem_task }}"
+      changed_when: true
+      notify:
+        - sample handler
+
+#    - name: task to flush notified handlers at this point
+#      ansible.builtin.meta: flush_handlers
+#    - name: task that relies on handler
+#      debug:
+#         msg: how to run handlers before this task
   handlers:
-    - name: restart chronyd 
+    - name: sample handler
+      ansible.builtin.debug:
+        msg: sample handler
+
+    - name: restart chronyd
       ansible.builtin.service:
         name: chronyd
         state: restarted

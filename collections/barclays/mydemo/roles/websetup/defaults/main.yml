@@ -1,0 +1,5 @@
+---
+# defaults file for websetup
+web_pkg: apache
+web_doc_root: /var/www/html
+web_svc: httpd

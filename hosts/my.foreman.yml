@@ -1,0 +1,6 @@
+plugin: redhat.satellite.foreman
+url: https://satellite.example.com
+user: ansibleinventory
+password: changeme
+host_filters: 'organization="Web Engineering"'
+

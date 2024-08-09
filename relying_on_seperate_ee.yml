@@ -1,0 +1,31 @@
+
+- name: a play that relies on an execution env image that has ansbile.builtin and ansible.posix collections
+  hosts: serverc
+  gather_facts: false
+  vars:
+    web_firewall_svc: http
+    web_pkg: httpd
+    web_svc: httpd
+    web_doc_root: /var/www/html
+  become: true
+  tasks:
+          - name: make sure web pkg is installed
+            ansible.builtin.dnf:
+                    name: "{{ web_pkg }}"
+                    state: latest
+          - name: start the webserver
+            ansible.builtin.service:
+                    name: "{{ web_svc }}"
+                    state: started
+                    enabled: true
+          - name: push web content
+            ansible.builtin.copy:
+                    src: index.html
+                    dest: "{{ web_doc_root }}/index.html"
+                    mode: 0644
+          - name: make sure web svc is open on firewall
+            ansible.posix.firewalld:
+              service: "{{ web_firewall_svc }}"
+              state: enabled
+              permanent: true
+              immediate: true

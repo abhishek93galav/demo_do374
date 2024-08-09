@@ -1,0 +1,24 @@
+---
+- hosts: serverf,serverb
+#  vars:
+#    ssh_keys:
+#      - servera
+#      - serverb
+#      - serverc
+  tasks:
+    - name: using data in the file just by refering file name
+      ansible.builtin.known_hosts:
+        key: "{{ lookup('ansible.builtin.file', 'serveridentities/servera_ssh_key.pub') }}"
+        name: servera
+        path: .ssh/known_hosts
+#      loop: "{{ ssh_keys }}"
+#    - name: reading the value of an env var
+#      ansible.builtin.debug:
+#          msg: "{{ lookup('ansible.builtin.env', 'training') }}"
+#    - name: run a command to work with its output
+#      ansible.builtin.debug:
+#        msg: "{{ lookup('ansible.builtin.file', 'serveridentities/'+item) }}"
+#      loop: "{{ query('ansible.builtin.lines', 'ls serveridentities') }}"
+...
+
+

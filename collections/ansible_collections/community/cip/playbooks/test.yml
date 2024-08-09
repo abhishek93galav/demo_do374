@@ -1,0 +1,17 @@
+---
+- name: Test some community.cip stuff
+  hosts: plc
+  gather_facts: false
+  tasks:
+#  - name: get tag information
+#    community.cip.tag_info:
+#    register: tag_info_out
+
+#   - name: set a tag
+#     community.cip.ensure_tag:
+#       name: "modified_by_ansible"
+#       value: True
+
+    - name: Verify firmware version
+      community.cip.ensure_firmware_version:
+        revision: "{{ hostvars[inventory_hostname]['revision'] }}"

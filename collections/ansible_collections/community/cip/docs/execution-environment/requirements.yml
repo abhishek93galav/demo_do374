@@ -1,0 +1,5 @@
+collections:
+  - name: community.cip
+  - name: community.general
+  - name: ansible.network
+  - name: ansible.posix

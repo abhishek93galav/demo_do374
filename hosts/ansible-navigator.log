@@ -1,0 +1,3 @@
+2024-08-08T08:17:27.856148+00:00 ERROR 'ansible_navigator.actions.inventory._collect_inventory_details_interactive' Errors were encountered while gathering the inventory:
+2024-08-08T08:17:27.857169+00:00 ERROR 'ansible_navigator.actions.inventory._collect_inventory_details_interactive' [WARNING]: Unable to parse /home/student/projectIGI/hosts/inventory as an inventory source
+2024-08-08T08:17:27.857277+00:00 ERROR 'ansible_navigator.actions.inventory._collect_inventory_details_interactive' [WARNING]: No inventory was parsed, only implicit localhost is available

@@ -1,15 +1,20 @@
-- hosts: serverb
+- hosts: servera
   become: true
+  vars:
+    web_pkg: httpd
   roles:
-    - name: ntpsetup
+    - name: websetup
   tasks:
-    - ansible.builtin.debug:
-        msg: cusomt message by task from tasks section
-    - name: tasks that will call a handler
-      ansible.builtin.shell: id
+    - name: task number 1
+      shell: id
       notify:
-        - task_handler
+        - sample handler
+#    - name: running the role here
+#      include_role:
+#        name: websetup
+    - name: task number 2
+      shell: id
   handlers:
-    - name: task_handler
-      ansible.builtin.debug:   
-        msg: handler triggered by task from task section running
+    - name: sample handler
+      debug:
+        msg: sample handler of task sectioned task

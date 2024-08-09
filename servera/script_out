@@ -1,0 +1,1 @@
+{"changed": true, "rc": 0, "stdout": "nothing\r\n", "stdout_lines": ["nothing"], "stderr": "Shared connection to servera closed.\r\n", "stderr_lines": ["Shared connection to servera closed."], "failed": false}

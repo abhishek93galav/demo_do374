@@ -1,0 +1,46 @@
+- hosts: servera
+  vars:
+    users:
+    - name: paul
+      password: redhat
+      authorized:
+      - keys/paul_key1.pub
+      - keys/paul_key2.pub
+      mysql:
+        hosts:
+        - "%"
+        - "127.0.0.1"
+        - "::1"
+        - "localhost"
+      groups:
+      - wheel
+    - name: john
+      password: fedora
+      authorized:
+      - keys/john_key.pub
+      mysql:
+        password: other-mysql-password
+        hosts:
+        - "utility"
+      groups:
+      - wheel
+      - devops
+    - name: olaf
+      authorized:
+      - keys/olaf_key_x.pub
+    cities:
+      norway: oslo
+      england: london
+  tasks:
+#  - name: cheerypicking info from the list
+#    ansible.builtin.debug:
+#      msg: "{{ users[1]['mysql']['password']  }}"
+#  - name: combine list by retriving lists
+#    ansible.builtin.debug:
+#      msg: "{{ item }}"
+#    loop: "{{ users | map(attribute='authorized') | flatten }}"
+  - name: converted content
+    debug:
+      msg:  "{{ converted_data[0]['country'] }}"
+    vars:
+      converted_data: "{{ cities | dict2items(key_name='country', value_name='capital') }}"

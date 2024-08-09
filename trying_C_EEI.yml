@@ -1,0 +1,12 @@
+- hosts: servera
+  become: true
+  roles:
+    - name: barclays.mydemo.websetup
+      vars:
+        web_pkg: httpd
+  tasks:
+    - ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true

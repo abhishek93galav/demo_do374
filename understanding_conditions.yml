@@ -1,0 +1,33 @@
+- hosts: all
+  vars:
+    supported_maintainers:
+      - abhi
+      - ricardo
+      - olaf
+    supported_distro:
+      - Windows
+      - Centos
+
+  tasks:
+    - name: running task on condition
+      ansible.builtin.debug:
+        msg: "task ran on {{ ansible_facts['fqdn'] }}"
+      when: ansible_facts['memfree_mb'] > 200
+
+    - name: runnign generic task but only on serverb
+      shell: id
+      when: ansible_facts['fqdn'] != "serverb.lab.example.com"
+
+    - name: runnign task if var is defined
+      shell: hostname
+      when: location is not defined
+
+    - name: running if maintainer is known
+      shell: id
+      when: ansible_facts['distribution'] in supported_distro
+
+    - name: running a task based on two conditions
+      shell: id
+      when: 
+        - ansible_facts['ansible_local']['custom']['purpose']['maintainer'] is defined 
+        - ansible_facts['ansible_local']['custom']['purpose']['maintainer'] in supported_maintainers

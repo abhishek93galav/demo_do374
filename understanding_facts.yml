@@ -1,0 +1,5 @@
+- hosts: servera
+  tasks:
+    - name: is this the only task executed?
+      ansible.builtin.debug:
+       msg: "{{ ansible_facts }}" 

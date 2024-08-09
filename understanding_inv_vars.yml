@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: false
+#  vars:
+#    location: playbook_play_vars
+  tasks:
+    - name: printing location var 
+      ansible.builtin.debug:
+        msg: "{{ location }}"
+      vars:
+        location: playbook_play_task
+    - name: priniting hsotname according to inv file
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
+      when: inventory_hostname  == "serverb"

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  serial: 
+    - 6
+    - 100%
+  max_fail_percentage: 0%
+  tasks:
+    - shell: sleep 3
+    - shell: id alice

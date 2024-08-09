@@ -1,0 +1,6 @@
+- name: play to use facts specific to each host
+  hosts: all
+  tasks:
+    - name: printing free memory of each host usign facts
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts['memfree_mb'] }}"
