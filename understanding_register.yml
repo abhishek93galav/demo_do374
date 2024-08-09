@@ -1,0 +1,15 @@
+- hosts: servera
+  vars:
+    acceptable_out: something
+  tasks:
+    - ansible.builtin.script: lame_script.sh 
+      register: out
+    - copy:
+        content: "{{ out }}"
+        dest: script_out
+    - fetch:
+        src: script_out
+        dest: .
+    - debug:
+        msg: task runnning on success condi
+      when: acceptable_out in out.stdout_lines
