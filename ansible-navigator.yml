@@ -3,7 +3,7 @@ ansible-navigator:
   execution-environment:
     container-engine: podman
     enabled: true
-    image: registry.redhat.io/ansible-automation-platform-22/ee-minimal-rhel8
+    image: registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9
     environment-variables:
       set:
         foo: bar
